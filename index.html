@@ -9,17 +9,16 @@
     .wrap {text-align: center;}
     .resp {display: inline-block; text-align: left; width: 21%; margin-right: 1%;}
     .resp.fixed {width: 100px; margin-right: 10px;}
-    .center {
-      margin: auto;
-      width: 50%;
-      border: 3px solid green;
-      padding: 10px;
+    .centered {
+      position: fixed; /* or absolute */
+      top: 50%;
+      left: 50%;
     }
     </style>
     
 </head>
 <body>
-<div class="wrap center">
+<div class="wrap centered">
     <div id="a" class="resp">aaaaaa</div>
     <div id="b" class="resp">bbbbbb</div>
     <div id="c" class="resp">ccccccc</div>
