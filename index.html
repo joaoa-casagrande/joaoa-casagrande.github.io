@@ -5,28 +5,183 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contador</title>
     
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <style>
-    .wrap {text-align: center;}
-    .resp {display: inline-block; text-align: left; width: 21%; margin-right: 1%;}
-    .resp.fixed {width: 100px; margin-right: 10px;}
-    .centered {
-      position: fixed; /* or absolute */
-      top: 50%;
-      left: 50%;
-    }
+    .vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
+}
+
     </style>
-    
 </head>
 <body>
-<div class="wrap centered">
-    <div id="a" class="resp">aaaaaa</div>
-    <div id="b" class="resp">bbbbbb</div>
-    <div id="c" class="resp">ccccccc</div>
-    <div id="d" class="resp">dddddd</div>
+<div class="jumbotron vertical-center"> 
+    <div class="container">
+
+        <div style="text-align: center;" class="row">
+        
+            <div  class="col-3 border border-primary">
+
+            Dias
+
+            </div>
+
+            <div  class="col-3 border border-primary">
+
+            Horas
+                
+            </div>
+
+            <div  class="col-3 border border-primary">
+
+            Minutos
+                
+            </div>
+
+            <div  class="col-3 border border-primary">
+
+            Segundos    
+
+            </div>
+        </div>
+
+        <div style="text-align: center;" class="row">
+        
+            <div id="days" class="col-3  bg-primary text-white">
+
+            aaaa
+
+            </div>
+
+            <div id="hours" class="col-3 bg-primary text-white">
+
+            bbbb
+                
+            </div>
+
+            <div id="minutes" class="col-3 bg-primary text-white">
+
+            cccc
+                
+            </div>
+
+            <div id="seconds" class="col-3 bg-primary text-white">
+
+            dddd    
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
+<script>
+
+
+$( document ).ready(function() {
+
+    updateTime();
+
+    var date1 = new Date(); 
+    var date2 = new Date("03/27/2021"); 
+    
+    function main() {
+        setInterval(updateTime, 1000);
+    }
+
+    
+    
+    
+    function updateTime(){
+        console.log("Entrou aqui")
+        var delta = Math.abs(date2 - date1) / 1000;
+
+        // calculate (and subtract) whole days
+        var days = Math.floor(delta / 86400);
+        delta -= days * 86400;
+
+        // calculate (and subtract) whole hours
+        var hours = Math.floor(delta / 3600) % 24;
+        delta -= hours * 3600;
+
+        // calculate (and subtract) whole minutes
+        var minutes = Math.floor(delta / 60) % 60;
+        delta -= minutes * 60;
+
+        // what's left is seconds
+        var seconds = parseInt(delta % 60);  // in theory the modulus is not required
+
+        value = parseInt($('#days').html()) ? parseInt($('#days').html()) : false;
+
+        if(!value){
+            $('#days').html(days);
+            $('#hours').html(hours);
+            $('#minutes').html(minutes);
+            $('#seconds').html(seconds);
+        } else{
+            if(days != parseInt($('#days').html())){
+                $('#days').html(days);
+
+            }
+            if(hours != parseInt($('#hours').html())){
+                $('#hours').html(hours);
+
+            }
+            if(minutes != parseInt($('#minutes').html())){
+                $('#minutes').html(minutes);
+
+            }
+            if(seconds != parseInt($('#seconds').html())){
+                $('#seconds').html(seconds);
+
+            }
+        }
+
+        date1 = new Date(); 
+        
+        // console.log(days)
+        // console.log(hours)
+        // console.log(minutes)
+        // console.log(Math.floor(seconds))
+        
+    }
+
+    main();
+});
+
+
+
+
+
+
+
+// $('#days').html(days);
+// $('#hours').html(hours);
+// $('#minutes').html(minutes);
+// $('#seconds').html(seconds);
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <iframe src="http://free.timeanddate.com/countdown/i7mdrc1y/n946/cf100/cm0/cu4/ct0/cs0/ca0/cr0/ss0/cac000/cpc000/pcfff/tc66c/fs100/szw320/szh135/tatLan%C3%A7amento%20Boku%20no%20Hero/tac000/tptTime%20since%20Event%20started%20in/tpc000/mac000/mpc000/iso2021-03-27T00:00:00" allowTransparency="true" frameborder="0" width="320" height="135"></iframe>
+
+
+</script>
 </body>
 </html>
